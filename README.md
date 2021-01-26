@@ -1,4 +1,4 @@
-Dataset is large, please contact the authod Jingchao Yang (jyang43@gmu.edu) for direct access
+Dataset is large, please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access
 
 ## Preparing your dataset:
 
