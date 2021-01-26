@@ -23,12 +23,12 @@ Place the dataset under Data folder in the same directory before running the cod
 
 ### - LSTM:
 
-[Tutorial] for LSTM using pytorch (https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/)
+[Tutorial](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/) for LSTM using pytorch 
 
 ### - ARIMA:
 
-[Tutorial] for ARIMA (https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q)
+[Tutorial](https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q) for ARIMA 
 
 ### - XGBoost:
 
-[Tutorial] for XGBoost (https://www.kaggle.com/furiousx7/xgboost-time-series)
+[Tutorial](https://www.kaggle.com/furiousx7/xgboost-time-series) for XGBoost 
