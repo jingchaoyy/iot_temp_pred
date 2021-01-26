@@ -20,8 +20,15 @@ Place the dataset under Data folder in the same directory before running the cod
 * [multistep_lstm](multistep_lstm) indludes python files for LSTM model building and training. 
 * [multistep_others](multistep_others) includes comparison model ARIMA and XGBoost.
 
-## Features - using only AQ variables
 
 ### - LSTM:
 
-Tutorial for LSTM using pytorch: https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/
+[Tutorial] for LSTM using pytorch (https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/)
+
+### - ARIMA:
+
+[Tutorial] for ARIMA (https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q)
+
+### - XGBoost:
+
+[Tutorial] for XGBoost (https://www.kaggle.com/furiousx7/xgboost-time-series)
