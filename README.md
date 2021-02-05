@@ -5,7 +5,7 @@
 
 Datasetcan be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g/personal/jyang43_masonlive_gmu_edu/En-TZLF4UVBAqyCtiyQOYM0BU3leFL4TSCJd18xoIXovGA?e=b3LTcq). Please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access if link expires.
 
-Place the dataset under the data folder in the same directory before running the code 
+Place the dataset in the data folder under the same directory before running the code 
 
 ## Requirements:
 - Python 3.7
