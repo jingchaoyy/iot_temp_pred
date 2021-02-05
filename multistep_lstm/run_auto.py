@@ -24,16 +24,31 @@ from sklearn.metrics import r2_score
 from sklearn.metrics import mean_absolute_error
 import os
 import glob
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--transLearn', action='store_true', default=False,
+                    help='Validate during training pass.')
+parser.add_argument('--epochs', type=int, default=15,
+                    help='Number of epochs to train.')
+parser.add_argument('--lr', type=float, default=0.001,
+                    help='Initial learning rate.')
+parser.add_argument('--hidden', type=int, default=12,
+                    help='Number of hidden units.')
+parser.add_argument('--multi_var', action='store_true', default=True,
+                    help='Number of hidden units.')
+parser.add_argument('--exp_set', type=list, default=[(24, 1), (24, 4)],
+                    help='different prediction scenarios [(in_length, out_length), ...] ')
+
+args = parser.parse_args()
 
 
 '''pytorch'''
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # device = torch.device("cpu")
-multi_variate_mode = True
 
 '''data'''
 # self-training and test path
-load_model = False
 out_path = r'..\data\LA\output'
 exp_path = r'..\data\LA'
 iot_path = exp_path + r'\IoT'
@@ -47,7 +62,7 @@ wu_path = exp_path + r'\WU'
 # iot_path = exp_path + r'\IoT'
 # wu_path = exp_path + r'\WU'
 
-
+print('data loading ...')
 geohash_df = pd.read_csv(iot_path + r'\nodes_missing_5percent.csv',
                          usecols=['Geohash'])
 iot_sensors = geohash_df.values.reshape(-1)
@@ -57,7 +72,8 @@ iot_df = pd.read_csv(iot_path + r'\preInt_matrix_full.csv',
 # ext_name = ['humidity', 'windSpeed']
 ext_name = ['humidity', 'windSpeed', 'dewPoint', 'precipProbability', 'pressure', 'cloudCover', 'uvIndex']
 ext_data_scaled = []
-if multi_variate_mode:
+print('missing data filling and checking ...')
+if args.multi_var:
     ext_data_path = wu_path + r'\byAttributes'
     for ext in ext_name:
         ext_df = pd.read_csv(ext_data_path + f'\{ext}.csv', index_col=['datetime'])
@@ -75,6 +91,7 @@ print('NaN value in IoT df?', iot_df.isnull().values.any())
 selected_vars = iot_sensors
 dataset = iot_df
 
+print('train/test station processing ...')
 print('selected sensors', dataset.columns)
 
 dataset = dataset.values
@@ -92,12 +109,11 @@ print('normalized dataset min, max', dataset.min(), dataset.max())
 
 
 '''start experiments'''
-experiments = [(24, 1), (24, 4), (24, 8), (24, 12), (36, 12), (48, 12), (72, 12), (72, 24), (72, 36), (72, 48),
-               (120, 48), (144, 48), (120, 72), (144, 72), (168, 120)]
+print('\nstart experiments on different prediction scenarios ...')
 
-for exp in range(len(experiments)):
-    train_window, output_size = experiments[exp]
-    print('#################current exp', train_window, output_size)
+for exp in range(len(args.exp_set)):
+    train_window, output_size = args.exp_set[exp]
+    print('\n\n#################current exp', train_window, output_size)
 
     output_path = out_path + f'\\{str(train_window)}_{str(output_size)}'
     try:
@@ -118,7 +134,8 @@ for exp in range(len(experiments)):
     print(test_data_raw.shape)
     print(train_data_raw.columns)
 
-    if not multi_variate_mode:
+    print('train/test data split ...')
+    if not args.multi_var:
         train_data = multistep_lstm_pytorch.Dataset(train_data_raw,
                                                     (norm_min, norm_max),
                                                     train_window, output_size)
@@ -152,28 +169,28 @@ for exp in range(len(experiments)):
     print("Testing input and output for each station: %s, %s" % (test_data[0][0].shape, test_data[0][1].shape))
 
     '''initialize the model'''
-    num_epochs = 15
-    epoch_interval = 1
-    hidden_size = 12
     loss_func, model, optimizer = multistep_lstm_pytorch.initial_model(input_size=train_data[0][0].shape[-1],
-                                                                       hidden_size=hidden_size,
+                                                                       hidden_size=args.hidden,
                                                                        output_size=output_size,
-                                                                       learning_rate=0.001
+                                                                       learning_rate=args.lr
                                                                        )
-    if not load_model:
-        model = model_train.start_training(model, train_data, device, loss_func, optimizer, num_epochs)
+    if not args.transLearn:
+        print('start model training ...')
+        model = model_train.start_training(model, train_data, device, loss_func, optimizer, args.epochs)
 
         # save trained model
         modelName = int(time.time())
         torch.save(model.state_dict(), output_path + f'\\input{train_window}_pred{output_size}_{modelName}.pt')
         print('model saved')
     else:
+        print('start model tuning with target region data ...')
         model_path = glob.glob(model_load_path + f'\\{str(train_window)}_{str(output_size)}' + r'\*.pt')
         model.load_state_dict(torch.load(model_path[0], map_location=device))
         model.eval()
-        model = model_train.start_training(model, train_data, device, loss_func, optimizer, num_epochs)
+        model = model_train.start_training(model, train_data, device, loss_func, optimizer, args.epochs)
 
     # Predict the training dataset of training stations and testing dataset of testing stations
+    print('model trained/tuned, start predicting ...')
     train_pred_orig_dict = dict()
     for idx in range(len(train_data)):
         station = train_data.keys[idx]
@@ -201,6 +218,7 @@ for exp in range(len(experiments)):
     print(list(test_pred_orig_dict.keys())[0])
 
     # plot baseline and predictions
+    print('model evaluation ...')
     d = {'ori': test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 0].data.tolist(),
          'pred': test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][0][:, 0].data.tolist()}
     pred_df = pd.DataFrame(data=d)
@@ -220,6 +238,7 @@ for exp in range(len(experiments)):
     rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
         test_pred_orig_dict)
 
+    print(f'evaluation result saved to {output_path}')
     '''RMSE'''
     rmse_by_station_train.to_csv(output_path + r'\trainScores_C.csv')
     np.savetxt(output_path + r'\trainScores_C_by_hour.csv', rmse_by_hour_train, delimiter=",")
