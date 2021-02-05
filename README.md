@@ -24,13 +24,13 @@ Place the dataset under Data folder in the same directory before running the cod
 
 ### - LSTM:
 
-[Tutorial](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/) for LSTM using pytorch 
-
 To run our LSTM model, go to the [directory](multistep_lstm) and using the command: 
 
-python run_auto.py --transLearn=False
+'''python run_auto.py --transLearn=False'''
 
 Argument "transLearn" controls regular model training (set to False) or transfer learning (set to True), more detail about transfer learning will be published in the next coming paper.
+
+[Tutorial](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/) for LSTM using pytorch 
 
 ### - ARIMA:
 
