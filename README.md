@@ -3,7 +3,7 @@
 
 ## Preparing your dataset:
 
-[Dataset](https://exchangelabsgmu-my.sharepoint.com/:f:/g/personal/jyang43_masonlive_gmu_edu/En-TZLF4UVBAqyCtiyQOYM0BU3leFL4TSCJd18xoIXovGA?e=b3LTcq) can be downloaded here. Please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access if link expires.
+Datasetcan be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g/personal/jyang43_masonlive_gmu_edu/En-TZLF4UVBAqyCtiyQOYM0BU3leFL4TSCJd18xoIXovGA?e=b3LTcq). Please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access if link expires.
 
 Place the dataset under Data folder in the same directory before running the code 
 
