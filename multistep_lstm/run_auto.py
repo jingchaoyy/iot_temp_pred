@@ -48,19 +48,20 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # device = torch.device("cpu")
 
 '''data'''
-# self-training and test path
-out_path = r'..\data\LA\output'
-exp_path = r'..\data\LA'
-iot_path = exp_path + r'\IoT'
-wu_path = exp_path + r'\WU'
-
-# # trans mode test path
-# load_model = True
-# model_load_path = r'..\data\LA\output'
-# out_path = r'..\data\LA\output\trans_model_test\Chicago_tuning'
-# exp_path = r'..\data\Chicago'
-# iot_path = exp_path + r'\IoT'
-# wu_path = exp_path + r'\WU'
+if not args.transLearn:
+    # self-training and test path
+    out_path = r'..\data\LA\output'
+    exp_path = r'..\data\LA'
+    iot_path = exp_path + r'\IoT'
+    wu_path = exp_path + r'\WU'
+else:
+    # trans mode test path
+    load_model = True
+    model_load_path = r'..\data\LA\output'
+    out_path = r'..\data\LA\output\trans_model_test\Chicago_tuning'
+    exp_path = r'..\data\Chicago'
+    iot_path = exp_path + r'\IoT'
+    wu_path = exp_path + r'\WU'
 
 print('data loading ...')
 geohash_df = pd.read_csv(iot_path + r'\nodes_missing_5percent.csv',
