@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import time
 from statistics import mean
 from torch.utils.data import TensorDataset, DataLoader
-from multistep_lstm import multistep_lstm_pytorch
+# from multistep_lstm import multistep_lstm_pytorch
+import multistep_lstm_pytorch
 from sklearn import preprocessing
 import numpy as np
 from numpy import isnan
