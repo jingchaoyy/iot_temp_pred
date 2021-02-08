@@ -7,7 +7,7 @@ Dataset can be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g
 
 Place the dataset in the data folder under the same directory before running the code 
 
-Note: All data has been preprocessed to csv format, raw data can be accessed from [weather underground](https://www.wunderground.com/) and [GeoTab](https://data.geotab.com/weather/temperature) 
+Note: All data has been preprocessed to csv format, raw data can be accessed from [weather underground](https://www.wunderground.com/) and [GeoTab](https://data.geotab.com/weather/temperature). Toolset for preprocessing raw data can be accessed upon request.
 
 ## Requirements:
 - Python 3.7
