@@ -9,7 +9,7 @@ Place the dataset in the data folder under the same directory before running the
 
 ## Requirements:
 - Python 3.7
-- PyTorch 1.7.0
+- PyTorch 1.7.0 (code has GPU support, but can run without) 
 - Pandas 1.0.1
 - scikit-learn
 - scipy
