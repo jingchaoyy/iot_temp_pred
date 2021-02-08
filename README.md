@@ -7,6 +7,8 @@ Dataset can be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g
 
 Place the dataset in the data folder under the same directory before running the code 
 
+Note: All data has been preprocessed to csv format, raw data can be accessed from [weather underground](https://www.wunderground.com/) and [GeoTab](https://data.geotab.com/weather/temperature). Toolset for preprocessing raw data can be accessed upon request.
+
 ## Requirements:
 - Python 3.7
 - PyTorch 1.7.0 (code has GPU support, but can run without) 
@@ -34,8 +36,12 @@ Argument "transLearn" controls regular model training (set to False) or transfer
 
 ### - ARIMA:
 
+To run our ARIMA model, go to [auto_arima_run.py](multistep_others/auto_arima_run.py)
+
 [Tutorial](https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q) for ARIMA 
 
 ### - XGBoost:
+
+To run our XGBoost model, go to [xgboost_run.py](multistep_others/xgboost_run.py)
 
 [Tutorial](https://www.kaggle.com/furiousx7/xgboost-time-series) for XGBoost 
