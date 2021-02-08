@@ -3,9 +3,9 @@
 
 ## Preparing your dataset:
 
-Dataset is large, please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access
+Datasetcan be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g/personal/jyang43_masonlive_gmu_edu/En-TZLF4UVBAqyCtiyQOYM0BU3leFL4TSCJd18xoIXovGA?e=b3LTcq). Please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access if link expires.
 
-Place the dataset under Data folder in the same directory before running the code 
+Place the dataset in the data folder under the same directory before running the code 
 
 ## Requirements:
 - Python 3.7
@@ -23,6 +23,12 @@ Place the dataset under Data folder in the same directory before running the cod
 
 
 ### - LSTM:
+
+To run our LSTM model, go to the [directory](multistep_lstm) and using the command
+
+```python run_auto.py --transLearn=False```
+
+Argument "transLearn" controls regular model training (set to False) or transfer learning (set to True), more detail about transfer learning will be published in the next coming paper.
 
 [Tutorial](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/) for LSTM using pytorch 
 
