@@ -7,7 +7,7 @@ Dataset can be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g
 
 ![dataset view](data/view/dataView.png)
 
-Place the dataset in the data folder before running the code 
+Place the dataset in the data folder to avoid additional path setup before running the code 
 
 Note: All data has been preprocessed to csv format, raw data can be accessed from [weather underground](https://www.wunderground.com/) and [GeoTab](https://data.geotab.com/weather/temperature). Toolset for preprocessing raw data can be accessed upon request.
 
@@ -45,12 +45,12 @@ Creat result folder under [multistep_others](multistep_others) for model output.
 
 #### - ARIMA:
 
-To run our ARIMA model, go to [auto_arima_run.py](multistep_others/auto_arima_run.py)
+To use our ARIMA model, run [auto_arima_run.py](multistep_others/auto_arima_run.py)
 
 [Tutorial](https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q) for ARIMA 
 
 #### - XGBoost:
 
-To run our XGBoost model, go to [xgboost_run.py](multistep_others/xgboost_run.py)
+To use our XGBoost model, run [xgboost_run.py](multistep_others/xgboost_run.py)
 
 [Tutorial](https://www.kaggle.com/furiousx7/xgboost-time-series) for XGBoost 
