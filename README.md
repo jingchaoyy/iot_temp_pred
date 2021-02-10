@@ -49,12 +49,16 @@ Creat result folder under [multistep_others](multistep_others) for model output.
 
 #### - ARIMA:
 
-To use our ARIMA model, run [auto_arima_run.py](multistep_others/auto_arima_run.py)
+To use our ARIMA model, go to [multistep_others](multistep_others) and use the command
+
+```python auto_arima_run.py```
 
 [Tutorial](https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q) for ARIMA 
 
 #### - XGBoost:
 
-To use our XGBoost model, run [xgboost_run.py](multistep_others/xgboost_run.py)
+To use our XGBoost model, go to [multistep_others](multistep_others) and use the command
+
+```python xgboost_run.py```
 
 [Tutorial](https://www.kaggle.com/furiousx7/xgboost-time-series) for XGBoost 
