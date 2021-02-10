@@ -53,7 +53,7 @@ print(test_data_raw.shape)
 
 '''multivariate'''
 if multi_variate_mode:
-    exp_path = r'D:\IoT_HeatIsland\iotTemp_exp_bak\exp_data\LA'
+    exp_path = r'..\data\LA'
     wu_path = exp_path + r'\WU'
     ext_name = ['humidity', 'windSpeed', 'dewPoint', 'precipProbability', 'pressure', 'cloudCover', 'uvIndex']
     ext_data_path = wu_path + r'\byAttributes'
