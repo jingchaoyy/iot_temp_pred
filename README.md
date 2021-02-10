@@ -28,11 +28,15 @@ Note: All data has been preprocessed to csv format, raw data can be accessed fro
 
 ### - LSTM:
 
-To run our LSTM model, go to the [directory](multistep_lstm) and using the command
+To run our LSTM model for regional training, go to the [directory](multistep_lstm) and use the command
 
-```python run_auto.py --transLearn=False```
+```python run_auto.py```
 
-Argument "transLearn" controls regular model training (set to False) or transfer learning (set to True), more detail about transfer learning will be published in the next coming paper. LA Dataset already includes trained models and ready for transfer learning, user can delete the content inside the LA/output to retrain
+LSTM was also developed to support transfer learning with command
+
+```python run_auto.py --transLearn```
+
+More detail about transfer learning will be published in the next coming paper. LA Dataset already includes trained models and ready for transfer learning, user can delete the content inside the LA/output to retrain
 
 Model output will be store in the data/output folder
 
