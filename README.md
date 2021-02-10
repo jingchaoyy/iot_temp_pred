@@ -7,9 +7,9 @@ Dataset can be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g
 
 ![dataset view](data/view/dataView.png)
 
-Place the dataset in the data folder to avoid additional path setup before running the code 
+* Place the dataset in the data folder to avoid additional path setup before running the code 
 
-Note: All data has been preprocessed to csv format, raw data can be accessed from [weather underground](https://www.wunderground.com/) and [GeoTab](https://data.geotab.com/weather/temperature). Toolset for preprocessing raw data can be accessed upon request.
+**Note**: All data has been preprocessed to csv format, raw data can be accessed from [weather underground](https://www.wunderground.com/) and [GeoTab](https://data.geotab.com/weather/temperature). Toolset for preprocessing raw data can be accessed upon request.
 
 ## Requirements:
 - Python 3.7
@@ -39,12 +39,9 @@ LSTM was also developed to support transfer learning with command
 
 ```python run_auto.py --transLearn```
 
-More detail about transfer learning will be published in the next coming paper. LA Dataset already includes trained models and ready for transfer learning, user can delete the content inside the LA/output to retrain
+**Note**: More detail about transfer learning will be published in the next coming paper. LA Dataset already includes trained models and ready for transfer learning, user can delete the content inside the LA/output to retrain
 
 Model output will be store in the data/output folder
-
-[Tutorial](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/) for LSTM using pytorch 
-
 
 ### - Other models 
 
@@ -56,12 +53,14 @@ To use our ARIMA model, go to [multistep_others](multistep_others) and use the c
 
 ```python auto_arima_run.py```
 
-[Tutorial](https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q) for ARIMA 
-
 #### - XGBoost:
 
 To use our XGBoost model, go to [multistep_others](multistep_others) and use the command
 
 ```python xgboost_run.py```
 
-[Tutorial](https://www.kaggle.com/furiousx7/xgboost-time-series) for XGBoost 
+
+## Useful links
+* [Tutorial](https://stackabuse.com/time-series-prediction-using-lstm-with-pytorch-in-python/) for LSTM using pytorch 
+* [Tutorial](https://www.kaggle.com/sumi25/understand-arima-and-tune-p-d-q) for ARIMA 
+* [Tutorial](https://www.kaggle.com/furiousx7/xgboost-time-series) for XGBoost 
