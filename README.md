@@ -19,6 +19,9 @@ Note: All data has been preprocessed to csv format, raw data can be accessed fro
 - scipy
 - numpy
 - matplotlib
+- tqdm
+- pmdarima
+- xgboost
 
 ## Category of models:
 
