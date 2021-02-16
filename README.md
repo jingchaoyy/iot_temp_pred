@@ -39,7 +39,7 @@ LSTM was also developed to support transfer learning with command
 
 ```python run_auto.py --transLearn```
 
-**Note**: More detail about transfer learning will be published in the next coming paper. LA Dataset already includes trained models and ready for transfer learning, user can delete the content inside the LA/output to retrain
+**Note**: Model training can take much longer time without GPU support. LA Dataset already includes trained models and ready for transfer learning, user can delete the content inside the LA/output to retrain
 
 Model output will be store in the data/output folder
 
