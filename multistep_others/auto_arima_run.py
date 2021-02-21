@@ -10,6 +10,9 @@ import model_train
 import multistep_lstm_pytorch
 import numpy as np
 from tqdm import tqdm
+import warnings
+
+warnings.filterwarnings('ignore')
 
 
 train_window, output_size = 24, 12
@@ -66,6 +69,6 @@ for i in tqdm(range(dataX.shape[-1])):
     rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
         test_pred_orig_dict, gpu=False)
 
-    path = r'..\result'
+    path = r'.\result'
     rmse_by_station_test.to_csv(path + r'\arima_trainScores_C.csv')
     np.savetxt(path + r'\arima_trainScores_C_by_hour.csv', rmse_by_hour_test, delimiter=",")
