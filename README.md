@@ -1,11 +1,10 @@
 # Hourly Temperature Prediction in Python
 
+* This project has been validated [here](https://github.com/stccenter/IoT-based-Temperature-Prediction) with a detailed tutorial for experiment duplication.
 
 ## Preparing your dataset:
 
 Dataset can be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g/personal/jyang43_masonlive_gmu_edu/En-TZLF4UVBAqyCtiyQOYM0BU3leFL4TSCJd18xoIXovGA?e=b3LTcq). Please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access if link expires.
-
-![dataset view](data/view/dataView.png)
 
 * Place the dataset in the data folder to avoid additional path setup before running the code 
 
