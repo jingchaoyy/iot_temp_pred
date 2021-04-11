@@ -1,6 +1,7 @@
 # Hourly Temperature Prediction in Python
 
 * This project has been validated [here](https://github.com/stccenter/IoT-based-Temperature-Prediction) with a detailed tutorial for experiment duplication.
+* Check out the slides [AAG 2021 Presentation](AAG_2021_IoTbased_Fine-scale_Urban_Temperature_Forecasting_Jingchao.pdf) for more project details.
 
 ## Preparing your dataset:
 
