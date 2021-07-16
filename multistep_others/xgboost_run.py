@@ -14,6 +14,7 @@ import multistep_lstm_pytorch
 from tqdm import tqdm
 from functools import reduce
 import warnings
+from sklearn.metrics import r2_score
 
 warnings.filterwarnings('ignore')
 
@@ -96,6 +97,7 @@ for col in tqdm(train_data_raw.columns):
 
 # model predict
 test_pred_orig_dict = dict()
+r2 = []
 for col in tqdm(test_data_raw.columns):
     X = test_data_raw[col]
     if multi_variate_mode:
@@ -111,11 +113,15 @@ for col in tqdm(test_data_raw.columns):
         test_y = test_y.reshape(-1, output_size)
     preds = xgb_r.predict(test_X)
     test_pred_orig_dict[col] = (np.array(preds), np.array(test_y))
+    r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 0].data.tolist(),
+                       test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 1].data.tolist()))
 
 
+r2_df = pd.DataFrame(r2)
 rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
     test_pred_orig_dict, gpu=False)
 
 path = r'.\result'
+r2_df.to_csv(path + r'\xgboost_testScores_C_r2.csv')
 rmse_by_station_test.to_csv(path + r'\xgboost_testScores_C.csv')
 np.savetxt(path + r'\xgboost_testScores_C_by_hour.csv', rmse_by_hour_test, delimiter=",")

@@ -11,6 +11,8 @@ import multistep_lstm_pytorch
 import numpy as np
 from tqdm import tqdm
 import warnings
+from sklearn.metrics import r2_score
+import pandas as pd
 
 warnings.filterwarnings('ignore')
 
@@ -33,7 +35,7 @@ train_stations = set(np.random.choice(iot_sensors, int(len(iot_sensors) * 0.7), 
 test_stations = set(iot_sensors) - train_stations
 if fast_mode:
     print('running code on fast mode')
-    test_stations = list(test_stations)[:3]  # sampling 3 stations for code test
+    test_stations = list(test_stations)[:100]  # sampling 3 stations for code test
 
 train_data_raw = iot_df[train_stations]
 test_data_raw = iot_df[test_stations]
@@ -52,6 +54,7 @@ print(dataY.shape)
 rmse_all, r2_all = [], []
 
 test_pred_orig_dict = dict()
+r2 = []
 for i in tqdm(range(dataX.shape[-1])):
     station = test_data_raw.columns[i]
     preds, origs = [], []
@@ -72,10 +75,14 @@ for i in tqdm(range(dataX.shape[-1])):
             print(f'auto arima package with data input error, skip {i, j}')
 
     test_pred_orig_dict[station] = (np.array(preds), np.array(origs))
+    r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 0].data.tolist(),
+                       test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 1].data.tolist()))
 
-    rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
-        test_pred_orig_dict, gpu=False)
+r2_df = pd.DataFrame(r2)
+rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
+    test_pred_orig_dict, gpu=False)
 
-    path = r'.\result'
-    rmse_by_station_test.to_csv(path + r'\arima_trainScores_C.csv')
-    np.savetxt(path + r'\arima_trainScores_C_by_hour.csv', rmse_by_hour_test, delimiter=",")
+path = r'.\result'
+r2_df.to_csv(path + r'\arima_testScores_C_r2.csv')
+rmse_by_station_test.to_csv(path + r'\arima_testScores_C.csv')
+np.savetxt(path + r'\arima_testScores_C_by_hour.csv', rmse_by_hour_test, delimiter=",")
