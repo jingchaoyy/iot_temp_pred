@@ -75,8 +75,8 @@ for i in tqdm(range(dataX.shape[-1])):
             print(f'auto arima package with data input error, skip {i, j}')
 
     test_pred_orig_dict[station] = (np.array(preds), np.array(origs))
-    r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 0].data.tolist(),
-                       test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 1].data.tolist()))
+    r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 0].data.tolist(),
+                       test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 1].data.tolist()))
 
 r2_df = pd.DataFrame(r2)
 rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(

@@ -113,8 +113,8 @@ for col in tqdm(test_data_raw.columns):
         test_y = test_y.reshape(-1, output_size)
     preds = xgb_r.predict(test_X)
     test_pred_orig_dict[col] = (np.array(preds), np.array(test_y))
-    r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 0].data.tolist(),
-                       test_pred_orig_dict[list(test_pred_orig_dict.keys())[0]][1][:, 1].data.tolist()))
+    r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 0].data.tolist(),
+                       test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 1].data.tolist()))
 
 
 r2_df = pd.DataFrame(r2)
