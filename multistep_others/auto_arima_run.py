@@ -78,11 +78,16 @@ for i in tqdm(range(dataX.shape[-1])):
     r2.append(r2_score(test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 0].data.tolist(),
                        test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 1].data.tolist()))
 
+    station_df = pd.DataFrame(test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 0].data.tolist(), columns=['pred'])
+    station_df['origs'] = test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 1].data.tolist()
+    station_df.to_csv(f'./result/arima/{station}_pred.csv')
+
+
 r2_df = pd.DataFrame(r2)
 rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
     test_pred_orig_dict, gpu=False)
 
-path = r'.\result'
+path = r'.\result\arima'
 r2_df.to_csv(path + r'\arima_testScores_C_r2.csv')
 rmse_by_station_test.to_csv(path + r'\arima_testScores_C.csv')
 np.savetxt(path + r'\arima_testScores_C_by_hour.csv', rmse_by_hour_test, delimiter=",")
