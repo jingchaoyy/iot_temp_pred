@@ -82,6 +82,9 @@ for i in tqdm(range(dataX.shape[-1])):
     station_df['origs'] = test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 1].data.tolist()
     station_df.to_csv(f'./result/arima/{station}_pred.csv')
 
+    np.savetxt(f'./result/arima/{station}_preds_all.csv', np.array(preds), delimiter=",")
+    np.savetxt(f'./result/arima/{station}_origs_all.csv', np.array(origs), delimiter=",")
+
 
 r2_df = pd.DataFrame(r2)
 rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(

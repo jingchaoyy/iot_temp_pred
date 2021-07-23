@@ -118,14 +118,17 @@ for col in tqdm(test_data_raw.columns):
 
     station_df = pd.DataFrame(test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 0].data.tolist(), columns=['pred'])
     station_df['origs'] = test_pred_orig_dict[list(test_pred_orig_dict.keys())[-1]][1][:, 1].data.tolist()
-    station_df.to_csv(f'./result/arima/{col}_pred.csv')
+    # station_df.to_csv(f'./result/xgboost/{col}_pred.csv')
+
+    np.savetxt(f'./result/xgboost/{col}_preds_all.csv', np.array(preds), delimiter=",")
+    np.savetxt(f'./result/xgboost/{col}_origs_all.csv', np.array(test_y), delimiter=",")
 
 
 r2_df = pd.DataFrame(r2)
 rmse_by_station_test, mae_by_station_test, rmse_by_hour_test, mae_by_hour_test = model_train.result_evaluation(
     test_pred_orig_dict, gpu=False)
 
-path = r'.\result'
+path = r'.\result\xgboost'
 r2_df.to_csv(path + r'\xgboost_testScores_C_r2.csv')
 rmse_by_station_test.to_csv(path + r'\xgboost_testScores_C.csv')
 np.savetxt(path + r'\xgboost_testScores_C_by_hour.csv', rmse_by_hour_test, delimiter=",")
