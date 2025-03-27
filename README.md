@@ -3,6 +3,9 @@
 * This project has been validated [here](https://github.com/stccenter/IoT-based-Temperature-Prediction) with a detailed tutorial for experiment duplication.
 * Check out the slides [AAG 2021 Presentation](AAG_2021_IoTbased_Fine-scale_Urban_Temperature_Forecasting_Jingchao.pdf) for more project details.
 
+# publication
+Yang, J., Yu, M., Liu, Q., Li, Y., Duffy, D. Q., & Yang, C. (2022). A high spatiotemporal resolution framework for urban temperature prediction using IoT data. Computers & Geosciences, 159, 104991.
+
 ## Preparing your dataset:
 
 Dataset can be downloaded [here](https://exchangelabsgmu-my.sharepoint.com/:f:/g/personal/jyang43_masonlive_gmu_edu/En-TZLF4UVBAqyCtiyQOYM0BU3leFL4TSCJd18xoIXovGA?e=b3LTcq). Please contact the author Jingchao Yang (jyang43@gmu.edu) for direct access if link expires.
